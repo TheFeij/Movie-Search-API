@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// SetData caches data into redis
+// SetData caches json data (map[string]interface) into redis
 func SetData(key string, data map[string]interface{}, expiration time.Duration) error {
 	jsonData, err := json.Marshal(data)
 	if err != nil {
@@ -22,7 +22,7 @@ func SetData(key string, data map[string]interface{}, expiration time.Duration) 
 	return nil
 }
 
-// GetData loads data from cache
+// GetData loads json data (map[string]interface) from cache
 func GetData(key string) (map[string]interface{}, error) {
 	var result map[string]interface{}
 
