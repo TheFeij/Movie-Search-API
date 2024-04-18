@@ -8,6 +8,7 @@ import (
 	"testing"
 )
 
+// TestHomePage tests "/" route of the http server
 func TestHomePage(t *testing.T) {
 	initializeServer()
 
