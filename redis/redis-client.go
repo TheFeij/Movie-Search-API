@@ -10,6 +10,13 @@ import (
 // redisClient redis client
 var redisClient *redis.Client
 
+// init loads configuration values
+func init() {
+	if err := loadConfig(); err != nil {
+		return
+	}
+}
+
 // initializeRedisClient initializes a redis client
 func initializeRedisClient() {
 	redisClient = redis.NewClient(&redis.Options{
