@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// TestSearchQuery tests SearchQuery
 func TestSearchQuery(t *testing.T) {
 	result, err := SearchQuery("brad")
 	require.NoError(t, err)

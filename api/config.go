@@ -5,10 +5,12 @@ import (
 	"github.com/spf13/viper"
 )
 
+// config holds configuration values for this package
 var config struct {
 	ServerAddress string `mapstructure:"SERVER_ADDRESS"`
 }
 
+// loadConfig loads configuration values from config.json to config struct
 func loadConfig() error {
 	viper.AddConfigPath("./")
 	viper.SetConfigName("config")

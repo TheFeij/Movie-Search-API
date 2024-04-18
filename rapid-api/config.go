@@ -5,12 +5,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+// config holds configuration values for this package
 var config struct {
 	XRapidAPIKey           string `mapstructure:"X_RAPID_API_KEY"`
 	XRapidAPIHost          string `mapstructure:"X_RAPID_API_HOST"`
 	RapidAPISearchEndpoint string `mapstructure:"RAPID_API_SEARCH_ENDPOINT"`
 }
 
+// loadConfig loads configuration values from config.json to config struct
 func loadConfig() error {
 	viper.AddConfigPath("./")
 	viper.SetConfigName("config")

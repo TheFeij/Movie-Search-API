@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// TestLoadConfig tests loadConfig function
 func TestLoadConfig(t *testing.T) {
 	require.Equal(t, "localhost:8080", config.ServerAddress)
 }
