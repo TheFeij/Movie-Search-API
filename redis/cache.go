@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/redis/go-redis/v9"
+	"log"
 	"time"
 )
 
@@ -45,4 +46,23 @@ func (c Cache) GetData(key string) (map[string]interface{}, error) {
 	}
 
 	return result, nil
+}
+
+// GetCacher initializes a redis client and returns a Cacher
+func GetCacher() Cacher {
+	cache := Cache{
+		redisClient: redis.NewClient(&redis.Options{
+			Addr:        config.RedisAddress,
+			DB:          config.RedisDB,
+			DialTimeout: config.RedisDialTimeout,
+			ReadTimeout: config.RedisReadTimeout,
+		}),
+	}
+
+	ctx := context.Background()
+	if err := cache.redisClient.Ping(ctx).Err(); err != nil {
+		log.Fatalf("failed to initialize redis:\n%v", err)
+	}
+
+	return cache
 }
