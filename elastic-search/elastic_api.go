@@ -8,8 +8,12 @@ import (
 	"net/url"
 )
 
+// ElasticSearch implements Searcher. interacts with elastic search
+type ElasticSearch struct {
+}
+
 // SearchQuery receives a query, calls elastic-search search api to search for documents related tot the query
-func SearchQuery(query string) (map[string]interface{}, error) {
+func (es ElasticSearch) SearchQuery(query string) (map[string]interface{}, error) {
 	encodedQuery := url.QueryEscape(query)
 	url := fmt.Sprintf("%s/movies/_search?q=%s", config.ElasticSearchAddress, encodedQuery)
 	res, err := http.Get(url)
@@ -22,4 +26,9 @@ func SearchQuery(query string) (map[string]interface{}, error) {
 	var jsonData map[string]interface{}
 	err = json.Unmarshal(body, &jsonData)
 	return jsonData, err
+}
+
+// NewElasticSearch returns an ElasticSearch
+func NewElasticSearch() ElasticSearch {
+	return ElasticSearch{}
 }
