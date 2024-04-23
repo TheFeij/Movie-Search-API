@@ -7,7 +7,9 @@ import (
 
 // TestSearchQuery tests SearchQuery
 func TestSearchQuery(t *testing.T) {
-	result, err := SearchQuery("brad")
+	searcher := NewSearcher()
+
+	result, err := searcher.SearchQuery("brad")
 	require.NoError(t, err)
 
 	require.NotEmpty(t, result)

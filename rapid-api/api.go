@@ -7,8 +7,12 @@ import (
 	"net/http"
 )
 
-// SearchQuery performs a search query using Rapid API's IMDb API.
-func SearchQuery(query string) (map[string]interface{}, error) {
+// RapidAPI implements Searcher. interacts with rapid-api
+type RapidAPI struct {
+}
+
+// SearchQuery performs a search query using Rapid-api's IMDb API.
+func (s RapidAPI) SearchQuery(query string) (map[string]interface{}, error) {
 	url := fmt.Sprintf("%s=%s", config.RapidAPISearchEndpoint, query)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -37,4 +41,9 @@ func SearchQuery(query string) (map[string]interface{}, error) {
 	err = json.Unmarshal(body, &jsonData)
 
 	return jsonData, err
+}
+
+// NewSearcher returns a Searcher
+func NewSearcher() Searcher {
+	return RapidAPI{}
 }
