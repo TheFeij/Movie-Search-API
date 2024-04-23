@@ -7,7 +7,7 @@ import (
 
 // TestSearchQuery tests SearchQuery
 func TestSearchQuery(t *testing.T) {
-	searcher := NewSearcher()
+	searcher := NewRapidAPI()
 
 	result, err := searcher.SearchQuery("brad")
 	require.NoError(t, err)

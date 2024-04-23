@@ -1,7 +1,6 @@
 package rapid_api
 
 import (
-	"Movie_Search_API/searcher"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -44,7 +43,7 @@ func (r RapidAPI) SearchQuery(query string) (map[string]interface{}, error) {
 	return jsonData, err
 }
 
-// NewSearcher returns a Searcher
-func NewSearcher() searcher.Searcher {
+// NewRapidAPI returns a RapidAPI
+func NewRapidAPI() RapidAPI {
 	return RapidAPI{}
 }
