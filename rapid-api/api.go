@@ -12,7 +12,7 @@ type RapidAPI struct {
 }
 
 // SearchQuery performs a search query using Rapid-api's IMDb API.
-func (s RapidAPI) SearchQuery(query string) (map[string]interface{}, error) {
+func (r RapidAPI) SearchQuery(query string) (map[string]interface{}, error) {
 	url := fmt.Sprintf("%s=%s", config.RapidAPISearchEndpoint, query)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
