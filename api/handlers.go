@@ -1,38 +1,35 @@
 package api
 
 import (
-	"Movie_Search_API/elastic-search"
-	"Movie_Search_API/rapid-api"
-	"Movie_Search_API/redis"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"time"
 )
 
-func search(context *gin.Context) {
+func (s server) search(context *gin.Context) {
 	query := context.Query("query")
 
 	cacheKey := "search:" + query
-	jsonData, err := redis.GetData(cacheKey)
+	jsonData, err := s.cache.GetData(cacheKey)
 	if err == nil {
 		context.JSON(http.StatusOK, jsonData)
 		return
 	}
 
-	jsonData, err = elastic_search.SearchQuery(query)
+	jsonData, err = s.elasticSearch.SearchQuery(query)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, errResponse(err))
 		return
 	}
 	hits := len(jsonData["hits"].(map[string]interface{})["hits"].([]interface{}))
 	if hits > 0 {
-		cacheResult(query, jsonData)
+		s.cacheResult(query, jsonData)
 		context.JSON(http.StatusOK, jsonData)
 		return
 	}
 
-	jsonData, err = rapid_api.SearchQuery(query)
+	jsonData, err = s.rapidAPI.SearchQuery(query)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, errResponse(err))
 		return
@@ -45,7 +42,7 @@ func search(context *gin.Context) {
 		return
 	}
 
-	cacheResult(query, jsonData)
+	s.cacheResult(query, jsonData)
 	context.JSON(http.StatusOK, jsonData)
 }
 
@@ -53,9 +50,9 @@ func errResponse(err error) gin.H {
 	return gin.H{"error": err.Error()}
 }
 
-func cacheResult(query string, jsonData map[string]interface{}) {
+func (s server) cacheResult(query string, jsonData map[string]interface{}) {
 	cacheKey := "search:" + query
-	err := redis.SetData(cacheKey, jsonData, 24*time.Hour)
+	err := s.cache.SetData(cacheKey, jsonData, 24*time.Hour)
 	if err != nil {
 		log.Println("Cache error:", err)
 	}
