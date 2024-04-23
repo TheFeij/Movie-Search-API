@@ -1,37 +1,39 @@
-// Package api implements an HTTP API server.
-//
-// It provides the following APIs:
-//
-// - "/" -> home page
 package api
 
 import (
+	elastic_search "Movie_Search_API/elastic-search"
+	rapid_api "Movie_Search_API/rapid-api"
+	"Movie_Search_API/redis"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 )
 
-// server holds a router value of type *gin.Engine
-var server struct {
+type server struct {
+	// router is the Gin router instance used for handling HTTP requests.
 	router *gin.Engine
-}
-
-// init loads configurations
-func init() {
-	if err := loadConfig(); err != nil {
-		log.Fatalln(err)
-	}
+	// rapidAPI is the instance of RapidAPI for interacting with Rapid API services.
+	rapidAPI rapid_api.RapidAPI
+	// elasticSearch is the instance of ElasticSearch for interacting with elastic search.
+	elasticSearch elastic_search.ElasticSearch
+	// cache is the instance of Cacher for caching data using Redis.
+	cache redis.Cacher
 }
 
 // initializeServer initializes server. Adds route handlers to the server
 func initializeServer() {
-	server.router = gin.Default()
+	server := server{
+		router:        gin.Default(),
+		rapidAPI:      rapid_api.NewRapidAPI(),
+		elasticSearch: elastic_search.NewElasticSearch(),
+		cache:         redis.GetCacher(),
+	}
 
 	server.router.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{"message": "Welcome to Movie Search API!"})
 	})
 
-	server.router.GET("/search", search)
+	server.router.GET("/search", server.search)
 }
 
 // StartServer starts the server on the address specified in the configuration file
