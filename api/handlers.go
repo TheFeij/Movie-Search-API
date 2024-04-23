@@ -29,7 +29,7 @@ func (s server) search(context *gin.Context) {
 		return
 	}
 
-	jsonData, err = s.rapidAPI.SearchQuery(query)
+	jsonData, err = s.rapidAPI.Find(query)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, errResponse(err))
 		return
