@@ -5,11 +5,11 @@ import (
 	"testing"
 )
 
-// TestSearchQuery tests SearchQuery
-func TestSearchQuery(t *testing.T) {
-	searcher := NewRapidAPI()
+// TestFind tests Find
+func TestFind(t *testing.T) {
+	rapidAPIService := NewRapidAPIService()
 
-	result, err := searcher.SearchQuery("brad")
+	result, err := rapidAPIService.Find("brad")
 	require.NoError(t, err)
 
 	require.NotEmpty(t, result)
