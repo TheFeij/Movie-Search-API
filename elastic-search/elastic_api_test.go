@@ -7,12 +7,12 @@ import (
 )
 
 func TestSearchQuery(t *testing.T) {
-	elasticSearch := NewElasticSearch()
+	elasticSearchService := NewElasticSearchService()
 
 	t.Run("OK", func(t *testing.T) {
 		query := "Tom Cruise"
 
-		result, err := elasticSearch.SearchQuery(query)
+		result, err := elasticSearchService.SearchQuery(query)
 		require.NoError(t, err)
 		require.NotEmpty(t, result)
 
