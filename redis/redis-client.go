@@ -1,4 +1,3 @@
-// Package redis provides functions to set json data to redis and get json data from it
 package redis
 
 import (
@@ -7,27 +6,27 @@ import (
 	"log"
 )
 
-// redisClient redis client
-var redisClient *redis.Client
-
-// init loads configuration values
-func init() {
-	if err := loadConfig(); err != nil {
-		return
-	}
+// Cache contains a redis client and provides methods to cache and load data
+type Cache struct {
+	// redisClient a redis.client object
+	redisClient *redis.Client
 }
 
 // InitializeRedisClient initializes a redis client
-func InitializeRedisClient() {
-	redisClient = redis.NewClient(&redis.Options{
-		Addr:        config.RedisAddress,
-		DB:          config.RedisDB,
-		DialTimeout: config.RedisDialTimeout,
-		ReadTimeout: config.RedisReadTimeout,
-	})
+func InitializeRedisClient() Cacher {
+	cache := Cache{
+		redisClient: redis.NewClient(&redis.Options{
+			Addr:        config.RedisAddress,
+			DB:          config.RedisDB,
+			DialTimeout: config.RedisDialTimeout,
+			ReadTimeout: config.RedisReadTimeout,
+		}),
+	}
 
 	ctx := context.Background()
-	if err := redisClient.Ping(ctx).Err(); err != nil {
+	if err := cache.redisClient.Ping(ctx).Err(); err != nil {
 		log.Fatalf("failed to initialize redis:\n%v", err)
 	}
+
+	return cache
 }
