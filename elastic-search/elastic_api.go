@@ -1,4 +1,4 @@
-package elastic
+package elastic_search
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"net/url"
 )
 
-// SearchQuery receives a query, calls elastic search api to search for documents related tot the query
+// SearchQuery receives a query, calls elastic-search search api to search for documents related tot the query
 func SearchQuery(query string) (map[string]interface{}, error) {
 	encodedQuery := url.QueryEscape(query)
 	url := fmt.Sprintf("%s/movies/_search?q=%s", config.ElasticSearchAddress, encodedQuery)

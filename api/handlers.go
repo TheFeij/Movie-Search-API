@@ -1,7 +1,7 @@
 package api
 
 import (
-	"Movie_Search_API/elastic"
+	"Movie_Search_API/elastic-search"
 	"Movie_Search_API/rapid-api"
 	"Movie_Search_API/redis"
 	"github.com/gin-gonic/gin"
@@ -20,7 +20,7 @@ func search(context *gin.Context) {
 		return
 	}
 
-	jsonData, err = elastic.SearchQuery(query)
+	jsonData, err = elastic_search.SearchQuery(query)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, errResponse(err))
 		return
