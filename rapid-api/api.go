@@ -1,4 +1,3 @@
-// Package rapid_api implements functions to interact with Rapid API's IMDb API.
 package rapid_api
 
 import (
@@ -7,13 +6,6 @@ import (
 	"io"
 	"net/http"
 )
-
-// init loads configuration values
-func init() {
-	if err := loadConfig(); err != nil {
-		return
-	}
-}
 
 // SearchQuery performs a search query using Rapid API's IMDb API.
 func SearchQuery(query string) (map[string]interface{}, error) {
