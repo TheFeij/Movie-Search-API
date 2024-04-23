@@ -8,7 +8,7 @@ import (
 
 // TestCache tests functions: SetData and GetData
 func TestCache(t *testing.T) {
-	cache := InitializeRedisClient()
+	cache := GetCacher()
 
 	key := "key"
 	value := map[string]interface{}{
