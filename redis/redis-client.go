@@ -17,8 +17,8 @@ func init() {
 	}
 }
 
-// initializeRedisClient initializes a redis client
-func initializeRedisClient() {
+// InitializeRedisClient initializes a redis client
+func InitializeRedisClient() {
 	redisClient = redis.NewClient(&redis.Options{
 		Addr:        config.RedisAddress,
 		DB:          config.RedisDB,

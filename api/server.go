@@ -31,7 +31,7 @@ func initializeServer() {
 		context.JSON(http.StatusOK, gin.H{"message": "Welcome to Movie Search API!"})
 	})
 
-	//TODO: /search GET endpoint
+	server.router.GET("/search", search)
 }
 
 // StartServer starts the server on the address specified in the configuration file
