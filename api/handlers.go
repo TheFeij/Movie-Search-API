@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func Search(context *gin.Context) {
+func search(context *gin.Context) {
 	query := context.Query("query")
 
 	cacheKey := "search:" + query
