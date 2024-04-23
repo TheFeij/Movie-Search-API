@@ -48,8 +48,8 @@ func (c Cache) GetData(key string) (map[string]interface{}, error) {
 	return result, nil
 }
 
-// GetCacher initializes a redis client and returns a Cacher
-func GetCacher() Cacher {
+// GetCacher initializes a redis client and returns a CacheService
+func GetCacher() CacheService {
 	cache := Cache{
 		redisClient: redis.NewClient(&redis.Options{
 			Addr:        config.RedisAddress,

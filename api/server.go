@@ -16,8 +16,8 @@ type server struct {
 	rapidAPI rapid_api.RapidAPIService
 	// elasticSearch is the service used for interacting with elastic search.
 	elasticSearch elastic_search.ElasticSearchService
-	// cache is the instance of Cacher for caching data using Redis.
-	cache redis.Cacher
+	// cache is the instance of CacheService for caching data using Redis.
+	cache redis.CacheService
 }
 
 // initializeServer initializes server. Adds route handlers to the server
