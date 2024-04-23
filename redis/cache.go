@@ -3,8 +3,15 @@ package redis
 import (
 	"context"
 	"encoding/json"
+	"github.com/redis/go-redis/v9"
 	"time"
 )
+
+// Cache contains a redis client and provides methods to cache and load data
+type Cache struct {
+	// redisClient a redis.client object
+	redisClient *redis.Client
+}
 
 // SetData caches json data (map[string]interface) into redis
 func (c Cache) SetData(key string, data map[string]interface{}, expiration time.Duration) error {

@@ -6,12 +6,6 @@ import (
 	"log"
 )
 
-// Cache contains a redis client and provides methods to cache and load data
-type Cache struct {
-	// redisClient a redis.client object
-	redisClient *redis.Client
-}
-
 // InitializeRedisClient initializes a redis client
 func InitializeRedisClient() Cacher {
 	cache := Cache{
