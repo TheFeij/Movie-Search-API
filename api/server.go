@@ -21,7 +21,7 @@ type server struct {
 }
 
 // initializeServer initializes server. Adds route handlers to the server
-func initializeServer() {
+func initializeServer() server {
 	server := server{
 		router:        gin.Default(),
 		rapidAPI:      rapid_api.NewRapidAPI(),
@@ -34,11 +34,13 @@ func initializeServer() {
 	})
 
 	server.router.GET("/search", server.search)
+
+	return server
 }
 
 // StartServer starts the server on the address specified in the configuration file
 func StartServer() {
-	initializeServer()
+	server := initializeServer()
 	if err := server.router.Run(config.ServerAddress); err != nil {
 		log.Fatal(err)
 	}
