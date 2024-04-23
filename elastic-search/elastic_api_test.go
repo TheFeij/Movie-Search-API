@@ -1,4 +1,4 @@
-package elastic
+package elastic_search
 
 import (
 	"fmt"
@@ -7,10 +7,12 @@ import (
 )
 
 func TestSearchQuery(t *testing.T) {
+	elasticSearch := NewElasticSearch()
+
 	t.Run("OK", func(t *testing.T) {
 		query := "Tom Cruise"
 
-		result, err := SearchQuery(query)
+		result, err := elasticSearch.SearchQuery(query)
 		require.NoError(t, err)
 		require.NotEmpty(t, result)
 

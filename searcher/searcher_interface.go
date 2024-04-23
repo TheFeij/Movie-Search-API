@@ -1,4 +1,5 @@
-package rapid_api
+// Package searcher contains Searcher Interface
+package searcher
 
 // Searcher  an interface for performing search operations.
 type Searcher interface {
