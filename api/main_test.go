@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-// initializeServer initializes server. Adds route handlers to the server
+// newTestServer returns a server filled with mock services
 func newTestServer(
 	rapidAPI rapid_api.RapidAPIService,
 	elasticSearch elastic_search.ElasticSearchService,
