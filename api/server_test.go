@@ -10,7 +10,7 @@ import (
 
 // TestHomePage tests "/" route of the http server
 func TestHomePage(t *testing.T) {
-	server := initializeServer()
+	server := newTestServer(nil, nil, nil)
 
 	httpRequest, err := http.NewRequest(http.MethodGet, "/", nil)
 	require.NoError(t, err)
