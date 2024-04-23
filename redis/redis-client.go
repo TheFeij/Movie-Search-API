@@ -1,4 +1,3 @@
-// Package redis provides functions to set json data to redis and get json data from it
 package redis
 
 import (
@@ -11,13 +10,6 @@ import (
 type Cache struct {
 	// redisClient a redis.client object
 	redisClient *redis.Client
-}
-
-// init loads configuration values
-func init() {
-	if err := loadConfig(); err != nil {
-		return
-	}
 }
 
 // InitializeRedisClient initializes a redis client
