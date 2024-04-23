@@ -28,7 +28,7 @@ func (es ElasticSearch) SearchQuery(query string) (map[string]interface{}, error
 	return jsonData, err
 }
 
-// NewElasticSearch returns an ElasticSearch
-func NewElasticSearch() ElasticSearch {
+// NewElasticSearchService returns an ElasticSearch
+func NewElasticSearchService() ElasticSearchService {
 	return ElasticSearch{}
 }

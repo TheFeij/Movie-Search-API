@@ -1,4 +1,4 @@
-// Package elastic-search provides functions to interact with elastic-search search
+// Package elastic_search provides functions to interact with elastic-search search
 package elastic_search
 
 import "log"

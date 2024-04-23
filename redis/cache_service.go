@@ -2,8 +2,8 @@ package redis
 
 import "time"
 
-// Cacher an interface for caching data.
-type Cacher interface {
+// CacheService an interface for caching data.
+type CacheService interface {
 	// SetData sets the data in the cache with the provided key and expiration duration.
 	// returns an error if the operation fails.
 	SetData(key string, data map[string]interface{}, expiration time.Duration) error

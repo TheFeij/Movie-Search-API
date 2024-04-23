@@ -12,20 +12,20 @@ import (
 type server struct {
 	// router is the Gin router instance used for handling HTTP requests.
 	router *gin.Engine
-	// rapidAPI is the instance of RapidAPI for interacting with Rapid API services.
-	rapidAPI rapid_api.RapidAPI
-	// elasticSearch is the instance of ElasticSearch for interacting with elastic search.
-	elasticSearch elastic_search.ElasticSearch
-	// cache is the instance of Cacher for caching data using Redis.
-	cache redis.Cacher
+	// rapidAPI is the service used for interacting with RapidAPI.
+	rapidAPI rapid_api.RapidAPIService
+	// elasticSearch is the service used for interacting with elastic search.
+	elasticSearch elastic_search.ElasticSearchService
+	// cache is the instance of CacheService for caching data using Redis.
+	cache redis.CacheService
 }
 
 // initializeServer initializes server. Adds route handlers to the server
 func initializeServer() server {
 	server := server{
 		router:        gin.Default(),
-		rapidAPI:      rapid_api.NewRapidAPI(),
-		elasticSearch: elastic_search.NewElasticSearch(),
+		rapidAPI:      rapid_api.NewRapidAPIService(),
+		elasticSearch: elastic_search.NewElasticSearchService(),
 		cache:         redis.GetCacher(),
 	}
 
