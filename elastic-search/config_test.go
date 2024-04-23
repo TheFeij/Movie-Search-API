@@ -7,5 +7,5 @@ import (
 
 // TestLoadConfig tests loadConfig function
 func TestLoadConfig(t *testing.T) {
-	require.Equal(t, "localhost:9200", config.ElasticSearchAddress)
+	require.Equal(t, "http://127.0.0.1:9200", config.ElasticSearchAddress)
 }
