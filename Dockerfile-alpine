@@ -1,0 +1,8 @@
+FROM alpine:3.19
+WORKDIR /app
+COPY  movies.json .
+COPY add-movies.sh .
+RUN chmod +x add-movies.sh
+RUN apk add curl
+
+CMD ["/app/add-movies.sh"]
