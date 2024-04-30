@@ -13,14 +13,14 @@ type RapidAPI struct {
 
 // Find finds relevant results to the user's query using Rapid-api's IMDb API.
 func (r RapidAPI) Find(query string) (map[string]interface{}, error) {
-	url := fmt.Sprintf("%s=%s", config.RapidAPISearchEndpoint, query)
+	url := fmt.Sprintf("%s=%s", configurations.RapidAPISearchEndpoint, query)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return make(map[string]interface{}), err
 	}
 
-	req.Header.Add("X-RapidAPI-Key", config.XRapidAPIKey)
-	req.Header.Add("X-RapidAPI-Host", config.XRapidAPIHost)
+	req.Header.Add("X-RapidAPI-Key", configurations.XRapidAPIKey)
+	req.Header.Add("X-RapidAPI-Host", configurations.XRapidAPIHost)
 
 	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
