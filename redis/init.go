@@ -1,11 +1,18 @@
 // Package redis provides functions to set json data to redis and get json data from it
 package redis
 
-import "log"
+import (
+	"Movie_Search_API/config"
+	"log"
+)
 
-// init loads configuration values
+var configurations config.Config
+
+// init loads configurations
 func init() {
-	if err := loadConfig(); err != nil {
+	var err error
+	configurations, err = config.LoadConfig("./config", "config")
+	if err != nil {
 		log.Fatalln(err)
 	}
 }
