@@ -41,7 +41,7 @@ func initializeServer() server {
 // StartServer starts the server on the address specified in the configuration file
 func StartServer() {
 	server := initializeServer()
-	if err := server.router.Run(config.ServerAddress); err != nil {
+	if err := server.router.Run(configurations.ServerAddress); err != nil {
 		log.Fatal(err)
 	}
 }

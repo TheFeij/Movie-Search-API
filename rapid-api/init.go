@@ -1,11 +1,18 @@
 // Package rapid_api implements functions to interact with Rapid API's IMDb API.
 package rapid_api
 
-import "log"
+import (
+	"Movie_Search_API/config"
+	"log"
+)
 
-// init loads configuration values
+var configurations config.Config
+
+// init loads configurations
 func init() {
-	if err := loadConfig(); err != nil {
+	var err error
+	configurations, err = config.LoadConfig("./config", "config")
+	if err != nil {
 		log.Fatalln(err)
 	}
 }

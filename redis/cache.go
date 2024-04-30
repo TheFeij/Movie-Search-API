@@ -52,10 +52,10 @@ func (c Cache) GetData(key string) (map[string]interface{}, error) {
 func GetCacher() CacheService {
 	cache := Cache{
 		redisClient: redis.NewClient(&redis.Options{
-			Addr:        config.RedisAddress,
-			DB:          config.RedisDB,
-			DialTimeout: config.RedisDialTimeout,
-			ReadTimeout: config.RedisReadTimeout,
+			Addr:        configurations.RedisAddress,
+			DB:          configurations.RedisDB,
+			DialTimeout: configurations.RedisDialTimeout,
+			ReadTimeout: configurations.RedisReadTimeout,
 		}),
 	}
 

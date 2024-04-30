@@ -15,7 +15,7 @@ type ElasticSearch struct {
 // SearchQuery receives a query, calls elastic-search search api to search for documents related tot the query
 func (es ElasticSearch) SearchQuery(query string) (map[string]interface{}, error) {
 	encodedQuery := url.QueryEscape(query)
-	url := fmt.Sprintf("%s/movies/_search?q=%s", config.ElasticSearchAddress, encodedQuery)
+	url := fmt.Sprintf("%s/movies/_search?q=%s", configurations.ElasticSearchAddress, encodedQuery)
 	res, err := http.Get(url)
 	if err != nil {
 		return nil, err
