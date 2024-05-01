@@ -63,7 +63,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dcokerfile-api
+      dockerfile: Dockerfile-api
     container_name: api
     ports:
       - 8080:8080
