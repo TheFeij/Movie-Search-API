@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-configmap
+data:
+  REDIS_ADDRESS: "redis:6379"
+  REDIS_DB: "0"
+  REDIS_DIAL_TIMEOUT: "100ms"
+  REDIS_READ_TIMEOUT: "100ms"
+  X_RAPID_API_KEY: "24e09e687amsh01656e6e67c47d0p1844bdjsn2c88aeebf80b"
+  X_RAPID_API_HOST: "imdb146.p.rapidapi.com"
+  RAPID_API_Search_Endpoint: "https://imdb146.p.rapidapi.com/v1/find/?query"
+  ELASTIC_SEARCH_ADDRESS: "http://elasticsearch:9200"
+  SERVER_ADDRESS: "0.0.0.0:8080"
+
+  
