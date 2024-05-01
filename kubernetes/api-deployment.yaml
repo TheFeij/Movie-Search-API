@@ -17,3 +17,6 @@ spec:
           image: thefeij/movie-search:1.0.1
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: api-configmap
