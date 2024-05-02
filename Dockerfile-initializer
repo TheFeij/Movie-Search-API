@@ -1,0 +1,7 @@
+FROM slongstreet/bind-utils:latest
+WORKDIR /app
+COPY movies.json .
+COPY initialize.sh .
+RUN chmod +x initialize.sh
+
+CMD ["/app/initialize.sh"]
